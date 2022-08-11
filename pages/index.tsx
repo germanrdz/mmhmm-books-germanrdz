@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import Title from "../components/shared/Title";
 import Button from "../components/shared/Button";
-import Card from "../components/shared/Card";
+import Book from "../components/books/Book";
 
 const Container = styled.div`
   max-width: 624px;
@@ -38,11 +38,11 @@ const Home: NextPage = () => {
       </Header>
 
       <BooksList>
-        <Card>book</Card>
-        <Card>book</Card>
-        <Card>book</Card>
-        <Card>book</Card>
-        <Card>book</Card>
+        <Book />
+        <Book />
+        <Book />
+        <Book />
+        <Book />
       </BooksList>
     </Container>
   );
