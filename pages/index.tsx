@@ -3,6 +3,7 @@ import Head from "next/head";
 import styled from "styled-components";
 
 import Title from "../components/shared/Title";
+import Button from "../components/shared/Button";
 
 const Container = styled.div`
   max-width: 624px;
@@ -13,9 +14,8 @@ const Container = styled.div`
 const Header = styled.div`
   display: grid;
   grid-template-columns: 1fr auto;
-  align-items: baseline;
-
-  margin-bottom: 50px;
+  align-items: center;
+  margin-bottom: 3.57em;
 `;
 
 const BooksList = styled.div`
@@ -33,7 +33,7 @@ const Home: NextPage = () => {
 
       <Header>
         <Title text="Bookshelf" />
-        <div>Add Book</div>
+        <Button onClick={() => console.log("add book")}>Add book</Button>
       </Header>
 
       <BooksList>
