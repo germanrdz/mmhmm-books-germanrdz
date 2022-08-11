@@ -8,6 +8,7 @@ import Title from "../components/shared/Title";
 import Button from "../components/shared/Button";
 import Book from "../components/books/Book";
 import FullScreenOverlay from "../components/shared/FullScreenOverlay";
+import NewBook from "../components/books/NewBook";
 import { getAllBooks } from "../utils/api";
 
 type Props = {
@@ -55,7 +56,7 @@ const Home: NextPage<Props> = ({ books }: Props) => {
       </BooksList>
 
       <FullScreenOverlay isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        New Book
+        <NewBook />
       </FullScreenOverlay>
     </Container>
   );

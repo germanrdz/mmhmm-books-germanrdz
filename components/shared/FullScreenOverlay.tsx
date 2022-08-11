@@ -18,7 +18,7 @@ const Overlay = styled.div`
 
 const Container = styled.div`
   max-width: 600px;
-  margin: 5em auto;
+  margin: 8em auto;
   padding: 0 2em;
   position: relative;
 `;
