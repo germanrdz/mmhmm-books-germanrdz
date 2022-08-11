@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/image";
 
 import Card from "../shared/Card";
 
@@ -43,7 +44,12 @@ const Body = styled.div`
 const Book = () => (
   <Card>
     <Container>
-      <div>imagen</div>
+      <Image
+        src="https://picsum.photos/125/200"
+        alt="Atomic Habits cover"
+        width={125}
+        height={200}
+      />
       <Description>
         <Title>Atomic Habits</Title>
         <Author>James Clear</Author>
