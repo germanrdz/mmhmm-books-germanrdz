@@ -1,11 +1,13 @@
+import { useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import styled from "styled-components";
 
+import type BookType from "../interfaces/Book";
 import Title from "../components/shared/Title";
 import Button from "../components/shared/Button";
 import Book from "../components/books/Book";
-import type BookType from "../interfaces/Book";
+import FullScreenOverlay from "../components/shared/FullScreenOverlay";
 import { getAllBooks } from "../utils/api";
 
 type Props = {
@@ -32,6 +34,8 @@ const BooksList = styled.div`
 `;
 
 const Home: NextPage<Props> = ({ books }: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <Container>
       <Head>
@@ -40,15 +44,19 @@ const Home: NextPage<Props> = ({ books }: Props) => {
 
       <Header>
         <Title text="Bookshelf" />
-        <Button onClick={() => console.log("add book")}>Add book</Button>
+        <Button onClick={() => setIsOpen(true)}>Add book</Button>
       </Header>
 
       <BooksList>
-        {books.length === 0 && <p>There are no books</p>}
+        {books.length === 0 && <p>There are no books.</p>}
         {books.map((book) => (
           <Book key={book.id} book={book} />
         ))}
       </BooksList>
+
+      <FullScreenOverlay isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        New Book
+      </FullScreenOverlay>
     </Container>
   );
 };
