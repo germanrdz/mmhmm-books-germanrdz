@@ -2,6 +2,8 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styled from "styled-components";
 
+import Title from "../components/shared/Title";
+
 const Container = styled.div`
   max-width: 624px;
   margin: 8em auto;
@@ -30,7 +32,7 @@ const Home: NextPage = () => {
       </Head>
 
       <Header>
-        <div>Bookshelf</div>
+        <Title text="Bookshelf" />
         <div>Add Book</div>
       </Header>
 

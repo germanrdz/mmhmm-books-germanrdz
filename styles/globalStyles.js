@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
 
     font-family: 'SF Pro Display';
     font-size: 14px;
+    color: #000000;
   }
 `;
 
