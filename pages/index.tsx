@@ -5,6 +5,12 @@ import styled from "styled-components";
 import Title from "../components/shared/Title";
 import Button from "../components/shared/Button";
 import Book from "../components/books/Book";
+import type BookType from "../interfaces/Book";
+import { getAllBooks } from "../utils/api";
+
+type Props = {
+  books: BookType[];
+};
 
 const Container = styled.div`
   max-width: 624px;
@@ -25,7 +31,7 @@ const BooksList = styled.div`
   grid-gap: 3em;
 `;
 
-const Home: NextPage = () => {
+const Home: NextPage<Props> = ({ books }: Props) => {
   return (
     <Container>
       <Head>
@@ -38,14 +44,21 @@ const Home: NextPage = () => {
       </Header>
 
       <BooksList>
-        <Book />
-        <Book />
-        <Book />
-        <Book />
-        <Book />
+        {books.length === 0 && <p>There are no books</p>}
+        {books.map((book) => (
+          <Book key={book.id} book={book} />
+        ))}
       </BooksList>
     </Container>
   );
 };
 
 export default Home;
+
+export const getServerSideProps = async () => {
+  const { data: books } = await getAllBooks();
+
+  return {
+    props: { books },
+  };
+};

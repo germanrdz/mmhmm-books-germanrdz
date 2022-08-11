@@ -2,13 +2,10 @@ import styled from "styled-components";
 import Image from "next/image";
 
 import Card from "../shared/Card";
+import type BookType from "../../interfaces/Book";
 
 type Props = {
-  id: string;
-  description: string;
-  imageUrl: string;
-  author: string;
-  title: string;
+  book: BookType;
 };
 
 const Container = styled.div`
@@ -21,6 +18,7 @@ const Description = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 10px;
+  align-content: flex-start;
 `;
 
 const Title = styled.div`
@@ -41,25 +39,19 @@ const Body = styled.div`
   line-height: 150%;
 `;
 
-const Book = () => (
+const Book = ({ book }: Props) => (
   <Card>
     <Container>
       <Image
-        src="https://picsum.photos/125/200"
-        alt="Atomic Habits cover"
+        src={book.imageUrl}
+        alt={`${book.title} cover`}
         width={125}
         height={200}
       />
       <Description>
-        <Title>Atomic Habits</Title>
-        <Author>James Clear</Author>
-        <Body>
-          No matter your goals, Atomic Habits offers a proven framework for
-          improving--every day. James Clear, one of the world's leading experts
-          on habit formation, reveals practical strategies that will teach you
-          exactly how to form good habits, break bad ones, and master the tiny
-          behaviors that lead to remarkable results.
-        </Body>
+        <Title>{book.title}</Title>
+        <Author>{book.author}</Author>
+        <Body>{book.description}</Body>
       </Description>
     </Container>
   </Card>
