@@ -1,16 +1,47 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import styled from "styled-components";
 
 const Container = styled.div`
-  background-color: red;
+  max-width: 624px;
+  margin: 8em auto;
+  padding: 2em;
 `;
 
-import styles from "../styles/Home.module.css";
+const Header = styled.div`
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+
+  margin-bottom: 50px;
+`;
+
+const BooksList = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 3em;
+`;
 
 const Home: NextPage = () => {
-  return <Container>Hola Mundo</Container>;
+  return (
+    <Container>
+      <Head>
+        <title>Books</title>
+      </Head>
+
+      <Header>
+        <div>Bookshelf</div>
+        <div>Add Book</div>
+      </Header>
+
+      <BooksList>
+        <div>book</div>
+        <div>book</div>
+        <div>book</div>
+        <div>book</div>
+      </BooksList>
+    </Container>
+  );
 };
 
 export default Home;
