@@ -6,12 +6,15 @@ import type BookType from "../../interfaces/Book";
 
 type Props = {
   book: BookType;
+  onRemove(): void;
 };
 
 const Container = styled.div`
   display: grid;
   grid-template-columns: 125px 1fr;
   grid-gap: 1.14em;
+
+  position: relative;
 `;
 
 const Description = styled.div`
@@ -39,9 +42,22 @@ const Body = styled.div`
   line-height: 150%;
 `;
 
-const Book = ({ book }: Props) => (
+const Remove = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  color: #929292;
+
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+const Book = ({ book, onRemove }: Props) => (
   <Card>
     <Container>
+      <Remove onClick={onRemove}>􀈒</Remove>
       <Image
         src={book.imageUrl}
         alt={`${book.title} cover`}
