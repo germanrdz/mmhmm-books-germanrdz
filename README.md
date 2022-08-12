@@ -2,6 +2,10 @@
 
 https://mmhmm-books-germanrdz.vercel.app/
 
+## Demo Video
+
+https://ooo.mmhmm.app/z_M1Fm6ALl0YpwDoykoMUs
+
 ## Stuff I ran into
 
 - Margins and paddings are not very well structured inside figma, they dont follow any scale and I cannot follow a good the strategy at structuring my code with ems/rems
