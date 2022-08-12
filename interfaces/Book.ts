@@ -1,5 +1,5 @@
 type BookType = {
-  id: string;
+  id?: string;
   description: string;
   imageUrl: string;
   author: string;

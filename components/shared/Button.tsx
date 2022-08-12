@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 type Props = {
   children: React.ReactNode;
-  onClick(): void;
+  onClick?(): void;
 };
 
 const Container = styled.button`

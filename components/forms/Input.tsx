@@ -1,9 +1,17 @@
 import styled from "styled-components";
+import { UseFormRegister } from "react-hook-form";
+
+import BookType from "../../interfaces/Book";
+
+const URL_PATTERN_VALIDATION =
+  "[Hh][Tt][Tt][Pp][Ss]?://(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::d{2,5})?(?:/[^s]*)?";
 
 type Props = {
   label: string;
   name: string;
   type?: string;
+  register: UseFormRegister<BookType>;
+  required?: boolean;
 };
 
 const Container = styled.div`
@@ -24,11 +32,32 @@ const Container = styled.div`
   }
 `;
 
-const Input = ({ label, name, type = "text" }: Props) => (
+const Input = ({
+  register,
+  label,
+  name,
+  required = false,
+  type = "text",
+}: Props) => (
   <Container>
     <label>{label}</label>
-    {type === "text" && <input type="text" name={name} />}
-    {type === "textarea" && <textarea name={name} rows={6} />}
+
+    {type === "text" && (
+      <input type="text" required={required} {...register(name as any)} />
+    )}
+
+    {type === "url" && (
+      <input
+        type="url"
+        pattern={URL_PATTERN_VALIDATION}
+        required={required}
+        {...register(name as any)}
+      />
+    )}
+
+    {type === "textarea" && (
+      <textarea required={required} {...register(name as any)} rows={6} />
+    )}
   </Container>
 );
 

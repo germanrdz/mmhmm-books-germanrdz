@@ -35,7 +35,7 @@ const BooksList = styled.div`
 `;
 
 const Home: NextPage<Props> = ({ books }: Props) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
     <Container>

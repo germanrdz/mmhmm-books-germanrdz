@@ -6,5 +6,6 @@ const API_AUTH_KEY = "germanrdz";
 const httpClient = http(BASE_URL, API_AUTH_KEY);
 
 const getAllBooks = async () => httpClient.get("/books");
+const createNewbook = async (data) => httpClient.post("/books", data);
 
-export { getAllBooks };
+export { getAllBooks, createNewbook };
