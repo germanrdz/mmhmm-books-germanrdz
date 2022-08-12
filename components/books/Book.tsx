@@ -6,7 +6,7 @@ import type BookType from "../../interfaces/Book";
 
 type Props = {
   book: BookType;
-  onRemove(): void;
+  onRemove?(): void;
 };
 
 const Container = styled.div`
@@ -57,7 +57,7 @@ const Remove = styled.div`
 const Book = ({ book, onRemove }: Props) => (
   <Card>
     <Container>
-      <Remove onClick={onRemove}>􀈒</Remove>
+      {onRemove && <Remove onClick={onRemove}>􀈒</Remove>}
       <Image
         src={book.imageUrl}
         alt={`${book.title} cover`}

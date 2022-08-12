@@ -9,7 +9,8 @@ import Button from "../components/shared/Button";
 import Book from "../components/books/Book";
 import FullScreenOverlay from "../components/shared/FullScreenOverlay";
 import NewBook from "../components/books/NewBook";
-import { getAllBooks } from "../utils/api";
+import { getAllBooks, removeBook } from "../utils/api";
+import Router from "next/router";
 
 type Props = {
   books: BookType[];
@@ -36,6 +37,20 @@ const BooksList = styled.div`
 
 const Home: NextPage<Props> = ({ books }: Props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
+  const [removingId, setRemovingId] = useState<string>("");
+
+  const handleRemoveBook = async (bookId: string) => {
+    if (!bookId) return;
+
+    const { status } = await removeBook(bookId);
+
+    if (status === 200) {
+      Router.reload();
+    } else {
+      setError("There was an error deleting your book.");
+    }
+  };
 
   return (
     <Container>
@@ -49,10 +64,17 @@ const Home: NextPage<Props> = ({ books }: Props) => {
       </Header>
 
       <BooksList>
+        {error !== "" && <p>{error}</p>}
         {books.length === 0 && <p>There are no books.</p>}
-        {books.map((book) => (
-          <Book key={book.id} book={book} />
-        ))}
+        {books
+          .filter((book) => book.id !== removingId)
+          .map((book) => (
+            <Book
+              onRemove={() => handleRemoveBook(book.id as string)}
+              key={book.id}
+              book={book}
+            />
+          ))}
       </BooksList>
 
       <FullScreenOverlay isOpen={isOpen} onClose={() => setIsOpen(false)}>
